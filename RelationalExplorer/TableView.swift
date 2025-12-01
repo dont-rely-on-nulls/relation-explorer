@@ -16,11 +16,14 @@ struct TableView: View {
             HStack(spacing: 1) {
                 ForEach(table.columns, id: \.self) { column in
                     Text(column)
-                        .font(.system(.body, design: .monospaced))
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity)
-                        .padding(8)
-                        .background(Color.blue.opacity(0.2))
+                        .font(.system(.callout, design: .monospaced))
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color.blue.opacity(0.15))
                 }
             }
             .background(Color.blue.opacity(0.1))
@@ -35,8 +38,11 @@ struct TableView: View {
                             ForEach(Array(row.enumerated()), id: \.offset) { cellIndex, cell in
                                 Text(cell)
                                     .font(.system(.body, design: .monospaced))
-                                    .frame(maxWidth: .infinity)
-                                    .padding(8)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .lineLimit(1)
+                                    .truncationMode(.tail)
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 6)
                                     .background(index % 2 == 0 ? Color.clear : Color.gray.opacity(0.05))
                             }
                         }
@@ -45,8 +51,8 @@ struct TableView: View {
             }
         }
         .overlay(
-            RoundedRectangle(cornerRadius: 4)
-                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(Color.gray.opacity(0.2), lineWidth: 1)
         )
     }
 }
